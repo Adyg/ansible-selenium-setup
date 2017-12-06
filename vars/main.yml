@@ -1,0 +1,5 @@
+---
+client_user: root
+
+selenium_version: 3.8.1
+selenium_install_firefox: yes

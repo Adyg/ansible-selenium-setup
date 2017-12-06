@@ -1,0 +1,6 @@
+---
+- role: geerlingguy.java
+  src: geerlingguy.java
+
+- role: selenium
+  src: https://github.com/arknoll/ansible-role-selenium/archive/master.tar.gz
