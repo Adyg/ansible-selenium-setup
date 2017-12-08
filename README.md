@@ -1,6 +1,7 @@
 Setup a server able to run Selenium tests and notify via email&phone in case of failure.
 
 Control machine = the machine Ansible will run on
+
 Client machine = the machine that Selenium will be setup on
 
 
@@ -14,7 +15,7 @@ What you will need
 ------------------
 1. A [Sendgrid](https://sendgrid.com/) account and it's API credentials
 2. A [Twilio](https://www.twilio.com/) account and it's API crendetials and phone number
-3. A server that you are able to SSH to (the Client machine)
+3. A fresh server that you are able to SSH to (the Client machine)
 
 
 SETUP: Control machine setup
