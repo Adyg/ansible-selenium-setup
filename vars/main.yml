@@ -3,3 +3,8 @@ client_user: root
 
 selenium_version: 3.8.1
 selenium_install_firefox: yes
+
+sendgrid_api_key: 
+twilio_account_sid: 
+twilio_auth_token: 
+twilio_phone_number:

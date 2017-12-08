@@ -35,10 +35,31 @@
   - name: Install Python's selenium package
     command: pip3 install selenium
 
+  - name: Install Python's fabric package
+    command: pip3 install fabric
+
+  - name: Install Python's Sendgrid package
+    command: pip3 install sendgrid
+
+  - name: Install Python's Twilio package
+    command: pip3 install twilio
+
   - name: Create user that will run the tests
     user:
       name: testrunner
       shell: /bin/bash
+
+  - name: Add Sendgrid API key environment variable
+    lineinfile: dest=/home/testrunner/.bashrc line="export SENDGRID_API_KEY={{ sendgrid_api_key }}" insertafter='EOF'
+
+  - name: Add Twilio account SID environment variable
+    lineinfile: dest=/home/testrunner/.bashrc line="export TWILIO_ACCOUNT_SID={{ twilio_account_sid }}" insertafter='EOF'
+
+  - name: Add Twilio auth token environment variable
+    lineinfile: dest=/home/testrunner/.bashrc line="export TWILIO_AUTH_TOKEN={{ twilio_auth_token }}" insertafter='EOF'
+
+  - name: Add Twilio phone number environment variable
+    lineinfile: dest=/home/testrunner/.bashrc line="export TWILIO_PHONE_NUMBER={{ twilio_phone_number }}" insertafter='EOF'
 
 - hosts: test_runners
   user: "{{ client_user }}"
