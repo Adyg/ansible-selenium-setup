@@ -61,6 +61,23 @@
   - name: Add Twilio phone number environment variable
     lineinfile: dest=/home/testrunner/.bashrc line="export TWILIO_PHONE_NUMBER={{ twilio_phone_number }}" insertafter='EOF'
 
+  - name: Add list of emails to be notified
+    lineinfile: dest=/home/testrunner/.bashrc line="export SEND_EMAIL_NOTIFICATIONS_TO={{ send_email_notifications_to }}" insertafter='EOF'
+
+  - name: Add list of phone numbers to be notified
+    lineinfile: dest=/home/testrunner/.bashrc line="export SEND_SMS_NOTIFICATIONS_TO={{ send_sms_notifications_to }}" insertafter='EOF'
+
+  - name: Uploading the test files
+    synchronize:
+      src: tests
+      dest: /home/testrunner/{{ project_name }}
+
+  - name: Create cronjob for running the tests
+    cron:
+      minute: "*/30"
+      user: testrunner
+      job: "python3 /home/testrunner/{{ project_name }}/runner.py"
+
 - hosts: test_runners
   user: "{{ client_user }}"
 
