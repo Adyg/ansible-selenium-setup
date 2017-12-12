@@ -76,7 +76,7 @@
     cron:
       minute: "*/30"
       user: testrunner
-      job: "python3 /home/testrunner/{{ project_name }}/runner.py"
+      job: "python3 /home/testrunner/{{ project_name }}/tests/runner.py"
 
 - hosts: test_runners
   user: "{{ client_user }}"
