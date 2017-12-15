@@ -28,7 +28,7 @@ What you will need
 SETUP: Control machine setup
 ---------------------
 
-## Ensure you have Ansible installed.
+#### Ensure you have Ansible installed
 
   a. On Ubuntu, run:
 
@@ -47,7 +47,7 @@ SETUP: Control machine setup
   `ansible-galaxy install -r requirements.yml`
 
 
-## Once the Control machine is ready:
+#### Once the Control machine is ready:
 
   a. Add the IP(s) of the client machine(s) to the `hosts` file (in the root directory of this repo), under `[test_runners]`. Each IP on a new line.
 
