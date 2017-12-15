@@ -5,5 +5,7 @@
     - vars/main.yml  
 
   tasks:
-  - name: ensure apt cache is up to date
-    apt: update_cache=yes
+  - name: Uploading the test files
+    synchronize:
+      src: tests
+      dest: /home/testrunner/{{ project_name }}
