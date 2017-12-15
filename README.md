@@ -28,7 +28,7 @@ What you will need
 SETUP: Control machine setup
 ---------------------
 
-1. Ensure you have Ansible installed.
+##Ensure you have Ansible installed.
 
   a. On Ubuntu, run:
 
@@ -47,7 +47,7 @@ SETUP: Control machine setup
   `ansible-galaxy install -r requirements.yml`
 
 
-2. Once the Control machine is ready:
+##Once the Control machine is ready:
 
   a. Add the IP(s) of the client machine(s) to the `hosts` file (in the root directory of this repo), under `[test_runners]`. Each IP on a new line.
 
@@ -63,7 +63,23 @@ SETUP: Control machine setup
 SETUP: Client machine setup
 ---------------------------
 
-1. Start the Client machine setup by running the following command on your Control machine, in the root of this repo:
+Start the Client machine setup by running the following command on your Control machine, in the root of this repo:
 
 `ansible-playbook provision.yml`
+
+
+Adding a test suite for a new project to an already deployed server
+-------------------------------------------------------------------
+
+`ansible-playbook create_test_suite.yml`
+
+
+
+Uploading tests
+---------------
+
+To upload new tests to the test server, run:
+
+`ansible-playbook upload_tests.yml`
+
 
