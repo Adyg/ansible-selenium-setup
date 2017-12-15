@@ -72,11 +72,26 @@
       src: tests
       dest: /home/testrunner/{{ project_name }}
 
+  - name: Generate cron script
+    blockinfile: 
+      dest=/home/testrunner/{{ project_name }}/tests/cron_runner.sh
+      content="export SEND_SMS_NOTIFICATIONS_TO={{ send_sms_notifications_to }}
+      export TWILIO_ACCOUNT_SID={{ twilio_account_sid }}
+      export TWILIO_AUTH_TOKEN={{ twilio_auth_token }}
+      export TWILIO_PHONE_NUMBER={{ twilio_phone_number }}
+      export SEND_EMAIL_NOTIFICATIONS_TO={{ send_email_notifications_to }}
+      export SEND_SMS_NOTIFICATIONS_TO={{ send_sms_notifications_to }}
+      python3 /home/testrunner/{{ project_name }}/tests/cron_runner.sh > /tmp/listener_{{ project_name }}.log 2>&1"
+      insertafter="EOF"
+
+  - name: Changing perm of cron_runner.sh, adding "+x"
+    file: dest=/home/testrunner/{{ project_name }}/tests/cron_runner.sh mode=a+x
+
   - name: Create cronjob for running the tests
     cron:
       minute: "*/30"
       user: testrunner
-      job: "python3 /home/testrunner/{{ project_name }}/tests/runner.py"
+      job: "/home/testrunner/{{ project_name }}/tests/cron_runner.sh"
 
 - hosts: test_runners
   user: "{{ client_user }}"
